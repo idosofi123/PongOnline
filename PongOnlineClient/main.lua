@@ -1,5 +1,7 @@
 -- main.lua
 
+Keyboard = require 'Utilities/Keyboard'
+
 function love.load()
   -- body...
 end

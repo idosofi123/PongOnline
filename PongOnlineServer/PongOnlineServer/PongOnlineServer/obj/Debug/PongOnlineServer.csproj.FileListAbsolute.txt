@@ -1,0 +1,7 @@
+D:\Users\USER\Desktop\Love2D\Projects\PongOnline\Repository\PongOnlineServer\PongOnlineServer\PongOnlineServer\bin\Debug\PongOnlineServer.exe.config
+D:\Users\USER\Desktop\Love2D\Projects\PongOnline\Repository\PongOnlineServer\PongOnlineServer\PongOnlineServer\bin\Debug\PongOnlineServer.exe
+D:\Users\USER\Desktop\Love2D\Projects\PongOnline\Repository\PongOnlineServer\PongOnlineServer\PongOnlineServer\bin\Debug\PongOnlineServer.pdb
+D:\Users\USER\Desktop\Love2D\Projects\PongOnline\Repository\PongOnlineServer\PongOnlineServer\PongOnlineServer\obj\Debug\PongOnlineServer.csprojAssemblyReference.cache
+D:\Users\USER\Desktop\Love2D\Projects\PongOnline\Repository\PongOnlineServer\PongOnlineServer\PongOnlineServer\obj\Debug\PongOnlineServer.csproj.CoreCompileInputs.cache
+D:\Users\USER\Desktop\Love2D\Projects\PongOnline\Repository\PongOnlineServer\PongOnlineServer\PongOnlineServer\obj\Debug\PongOnlineServer.exe
+D:\Users\USER\Desktop\Love2D\Projects\PongOnline\Repository\PongOnlineServer\PongOnlineServer\PongOnlineServer\obj\Debug\PongOnlineServer.pdb
