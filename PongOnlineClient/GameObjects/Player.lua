@@ -17,7 +17,7 @@ function Player:new(x)
 end
 
 function Player:update(dt)
-  _y = _y + _speed * dt
+  self._y = self._y + self._speed * dt
 end
 
 function Player:draw()
