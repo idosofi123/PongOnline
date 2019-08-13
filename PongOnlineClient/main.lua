@@ -1,8 +1,9 @@
 -- main.lua
 
 -- libraries and Utilities
-Roomy    = require 'Libraries/roomy'
-Keyboard = require 'Utilities/Keyboard'
+Roomy           = require 'Libraries/roomy'
+Keyboard        = require 'Utilities/Keyboard'
+TextureSupplier = require 'Utilities/TextureSupplier'
 
 -- Screens
 MenuScreen   = require 'Screening/Screens/Menu'
@@ -12,6 +13,8 @@ InGameScreen = require 'Screening/Screens/InGame'
 local screenManager
 
 function love.load()
+
+  TextureSupplier:loadTextures()
 
 -- Hook the keyboard singleton to LOVE's callbacks.
   Keyboard:hookLoveEvents()
