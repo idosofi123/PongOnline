@@ -5,3 +5,8 @@ D:\Users\USER\Desktop\Love2D\Projects\PongOnline\Repository\PongOnlineServer\Pon
 D:\Users\USER\Desktop\Love2D\Projects\PongOnline\Repository\PongOnlineServer\PongOnlineServer\PongOnlineServer\obj\Debug\PongOnlineServer.csproj.CoreCompileInputs.cache
 D:\Users\USER\Desktop\Love2D\Projects\PongOnline\Repository\PongOnlineServer\PongOnlineServer\PongOnlineServer\obj\Debug\PongOnlineServer.exe
 D:\Users\USER\Desktop\Love2D\Projects\PongOnline\Repository\PongOnlineServer\PongOnlineServer\PongOnlineServer\obj\Debug\PongOnlineServer.pdb
+D:\Users\USER\Desktop\Love2D\Projects\PongOnline\Repository\PongOnlineServer\PongOnlineServer\PongOnlineServer\bin\Debug\enet.dll
+D:\Users\USER\Desktop\Love2D\Projects\PongOnline\Repository\PongOnlineServer\PongOnlineServer\PongOnlineServer\bin\Debug\enet.dylib
+D:\Users\USER\Desktop\Love2D\Projects\PongOnline\Repository\PongOnlineServer\PongOnlineServer\PongOnlineServer\bin\Debug\libenet.so
+D:\Users\USER\Desktop\Love2D\Projects\PongOnline\Repository\PongOnlineServer\PongOnlineServer\PongOnlineServer\bin\Debug\ENet-CSharp.dll
+D:\Users\USER\Desktop\Love2D\Projects\PongOnline\Repository\PongOnlineServer\PongOnlineServer\PongOnlineServer\obj\Debug\PongOnlineServer.csproj.CopyComplete
