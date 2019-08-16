@@ -1,19 +1,12 @@
-BUTTON_WIDTH = 45
-BUTTON_HEIGHT = 20
-
 local Button = {}
 Button.__index = Button
 
-function Button:new(label, callback, x, y, w, h)
-  w = w or BUTTON_WIDTH
-  h = h or BUTTON_HEIGHT
+function Button:new(label, callback, uiBoxWidth, uiBoxHeight)
   local instance = {
     _label = label,
     _callback = callback,
-    _x = x,
-    _y = y,
-    _w = w,
-    _h = h,
+    _uiBoxWidth = uiBoxWidth,
+    _uiBoxHeight = uiBoxHeight
   }
   instance.setmetatable(self)
   return instance
@@ -23,7 +16,7 @@ function Button:click()
   self._callback()
 end
 
-function Button:draw()
+function Button:draw(x, y)
   -- body...
 end
 

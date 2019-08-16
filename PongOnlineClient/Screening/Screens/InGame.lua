@@ -1,14 +1,14 @@
+Screen = require '../Screen'
 TextureSupplier = require '.../Utilities/TextureSupplier'
 
 local InGameScreen = {}
-
-function InGameScreen:update(dt)
-
-end
+setmetatable(InGameScreen, Screen)
 
 function InGameScreen:draw()
-  love.graphics.print("In Game", 50, 50)
   love.graphics.draw(TextureSupplier.map)
+
+  -- Draw UI elements (super method)
+  getmetatable(self).draw()
 end
 
 return InGameScreen

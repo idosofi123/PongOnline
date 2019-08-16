@@ -1,11 +1,13 @@
+Screen = require '../Screen'
+TextureSupplier = require '.../Utilities/TextureSupplier'
+
 local MenuScreen = {}
-
-function MenuScreen:update(dt)
-
-end
+setmetatable(MenuScreen, Screen)
 
 function MenuScreen:draw()
-  love.graphics.print("Menu Screen", 50, 50)
+
+  -- Draw UI elements (super method)
+  getmetatable(self).draw()
 end
 
 return MenuScreen
