@@ -9,8 +9,11 @@ local super = Screen:new()
 super.__index = super
 setmetatable(MenuScreen, super)
 
--- Set UI
-super:addElement(Button:new("Connect", function() end, 2, 1), 5, 7)
+-- UI Definition
+super:addElement(Button:new("Connect", function()  end, 2, 1), 5, 7)
+
+super:addElement(Button:new("Exit", function() love.event.quit() end, 2, 1), 5, 9)
+
 
 function MenuScreen:draw()
   love.graphics.draw(TextureSupplier.menu)

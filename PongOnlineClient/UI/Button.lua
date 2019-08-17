@@ -10,11 +10,17 @@ function Button:new(label, callback, uiBoxWidth, uiBoxHeight)
   local instance = {
     _label = label,
     _callback = callback,
+    _uiBoxWidth = uiBoxWidth,
+    _uiBoxHeight = uiBoxHeight,
     _width = calcW,
     _height = calcH
   }
   setmetatable(instance, self)
   return instance
+end
+
+function Button:getUiDimensions()
+  return self._uiBoxWidth, self._uiBoxHeight
 end
 
 function Button:click()
