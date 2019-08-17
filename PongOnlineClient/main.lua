@@ -23,7 +23,7 @@ function love.load()
 -- display the menu screen.
   screenManager = Roomy.new()
   screenManager:hook()
-  screenManager:switch(MenuScreen)
+  screenManager:switch(InGameScreen)
 
 end
 

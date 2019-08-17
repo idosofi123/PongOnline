@@ -15,7 +15,6 @@ function Screen:new()
 end
 
 function Screen:mousepressed(x, y, button, isTouch)
-  print("niggaHasClicked")
   local clickUiBox = calculateUiBox(x, y)
   if self._ui[clickUiBox] ~= nil and button == 1 then
     self._ui[clickUiBox].click()
