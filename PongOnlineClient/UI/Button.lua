@@ -24,10 +24,10 @@ end
 function Button:draw(x, y)
   local textWidth = love.graphics.getFont():getWidth(self._label)
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.rectangle("fill", x, y, self._width, self._height)
-  love.graphics.setColor(0, 0, 0, 1)
-  love.graphics.print(self._label, x + self._width / 2 - textWidth / 2, y + self._height / 2 - love.graphics.getFont():getHeight() / 2)
-  love.graphics.setColor(1, 1, 1, 1)
+  love.graphics.rectangle("line", x, y, self._width, self._height)
+  love.graphics.print(self._label,
+                      x + self._width / 2 - math.floor(textWidth / 2),
+                      y + self._height / 2 - math.floor(love.graphics.getFont():getHeight() / 2))
 end
 
 return Button

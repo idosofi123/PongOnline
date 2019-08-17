@@ -38,18 +38,18 @@ end
 
 -- Static functions/fields
 function Screen.calculateUiBox(x, y)
-  return x / UI_BOX_WIDTH + ((y / UI_BOX_HEIGHT) * (_G.RESOLUTION_WIDTH / UI_BOX_WIDTH))
+  return math.floor(x / UI_BOX_WIDTH) + (math.floor(y / UI_BOX_HEIGHT) * UI_GRID_COLUMNS)
 end
 
 function Screen.calculatePosOfUiBox(uiBox)
-  local x = (uiBox % (_G.RESOLUTION_WIDTH / UI_BOX_WIDTH)) * UI_BOX_WIDTH
-  local y = (uiBox / (_G.RESOLUTION_WIDTH / UI_BOX_WIDTH)) * UI_BOX_HEIGHT
+  local x = math.floor((uiBox % (_G.RESOLUTION_WIDTH / UI_BOX_WIDTH)) * UI_BOX_WIDTH)
+  local y = math.floor((uiBox / (_G.RESOLUTION_WIDTH / UI_BOX_WIDTH)) * UI_BOX_HEIGHT)
   return x, y
 end
 
 function Screen.convertUiDimensionsToPxDimensions(uiBoxWidth, uiBoxHeight)
-  return uiBoxWidth * (_G.RESOLUTION_WIDTH / UI_GRID_COLUMNS),
-         uiBoxHeight * (_G.RESOLUTION_HEIGHT / UI_GRID_ROWS)
+  return math.floor(uiBoxWidth * (_G.RESOLUTION_WIDTH / UI_GRID_COLUMNS)),
+         math.floor(uiBoxHeight * (_G.RESOLUTION_HEIGHT / UI_GRID_ROWS))
 end
 
 return Screen
