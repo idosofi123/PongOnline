@@ -16,6 +16,9 @@ function love.load()
 
   TextureSupplier:loadTextures()
 
+-- Set default font (TEMPORARY)
+  love.graphics.setFont(love.graphics.newFont("Assets/Fonts/Rajdhani-Regular.ttf", 32))
+
 -- Hook the keyboard singleton to LOVE's callbacks.
   Keyboard:hookLoveEvents()
 
@@ -23,7 +26,7 @@ function love.load()
 -- display the menu screen.
   screenManager = Roomy.new()
   screenManager:hook()
-  screenManager:switch(InGameScreen)
+  screenManager:switch(MenuScreen)
 
 end
 
