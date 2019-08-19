@@ -13,7 +13,8 @@ function Button:new(label, callback, uiBoxWidth, uiBoxHeight)
     _uiBoxWidth = uiBoxWidth,
     _uiBoxHeight = uiBoxHeight,
     _width = calcW,
-    _height = calcH
+    _height = calcH,
+    _isHovered = false
   }
   setmetatable(instance, self)
   return instance
@@ -27,10 +28,15 @@ function Button:click()
   self._callback()
 end
 
+function Button:mousemoved(isHover)
+  self._isHovered = isHover
+end
+
 function Button:draw(x, y)
   local textWidth = love.graphics.getFont():getWidth(self._label)
-  love.graphics.setColor(1, 1, 1, 1)
+  if self._isHovered then love.graphics.setColor(1, 1, 1, 1) else love.graphics.setColor(1, 1, 1, 0.3) end
   love.graphics.rectangle("line", x, y, self._width, self._height)
+  love.graphics.setColor(1, 1, 1, 1)
   love.graphics.print(self._label,
                       x + self._width / 2 - math.floor(textWidth / 2),
                       y + self._height / 2 - math.floor(love.graphics.getFont():getHeight() / 2))

@@ -1,6 +1,6 @@
 -- Screen.lua (ABSTRACT)
 
-UI_GRID_COLUMNS = 12
+UI_GRID_COLUMNS = 16
 UI_GRID_ROWS = 12
 UI_BOX_WIDTH = _G.RESOLUTION_WIDTH / UI_GRID_COLUMNS
 UI_BOX_HEIGHT = _G.RESOLUTION_HEIGHT / UI_GRID_ROWS
@@ -11,7 +11,7 @@ Screen.__index = Screen
 function Screen:new()
   local instance = {
     _ui = {},
-    _drawUi = {}
+    _drawUi = {} -- unique
   }
   setmetatable(instance, self)
   return instance
@@ -21,8 +21,8 @@ function  Screen:addElement(element, uiBoxCol, uiBoxRow)
   local uiBoxWidth, uiBoxHeight = element:getUiDimensions()
 
 -- Fill the grid with references to the UI element to enable spatial hashing
-  for i = uiBoxCol, uiBoxCol + uiBoxWidth do
-    for j = uiBoxRow, uiBoxRow + uiBoxHeight do
+  for i = uiBoxCol, uiBoxCol + uiBoxWidth - 1 do
+    for j = uiBoxRow, uiBoxRow + uiBoxHeight - 1 do
       self._ui[j * UI_GRID_COLUMNS + i] = element
     end
   end
@@ -34,7 +34,20 @@ function Screen:mousepressed(x, y, button, isTouch)
   local clickUiBox = Screen.calculateUiBox(x, y)
   if self._ui[clickUiBox] ~= nil and button == 1 then
     self._ui[clickUiBox]:click()
-  end  self._ui.originalBox = true
+  end
+end
+
+function Screen:mousemoved(x, y, dx, dy, isTouch)
+  local clickUiBox = Screen.calculateUiBox(x, y)
+  for uiBox, element in pairs(self._ui) do
+    if uiBox ~= clickUiBox then
+      element:mousemoved(false)
+      --Todo: Make sure the element implements this method
+    end
+  end
+  if self._ui[clickUiBox] ~= nil then
+    self._ui[clickUiBox]:mousemoved(true)
+  end
 end
 
 function Screen:draw()
@@ -52,14 +65,14 @@ function Screen.calculateUiBox(x, y)
 end
 
 function Screen.calculatePosOfUiBox(uiBox)
-  local x = math.floor((uiBox % (_G.RESOLUTION_WIDTH / UI_BOX_WIDTH)) * UI_BOX_WIDTH)
-  local y = math.floor((uiBox / (_G.RESOLUTION_WIDTH / UI_BOX_WIDTH)) * UI_BOX_HEIGHT)
+  local x = (uiBox % UI_GRID_COLUMNS) * UI_BOX_WIDTH
+  local y = math.floor(uiBox / UI_GRID_COLUMNS) * UI_BOX_HEIGHT
   return x, y
 end
 
 function Screen.convertUiDimensionsToPxDimensions(uiBoxWidth, uiBoxHeight)
-  return math.floor(uiBoxWidth * (_G.RESOLUTION_WIDTH / UI_GRID_COLUMNS)),
-         math.floor(uiBoxHeight * (_G.RESOLUTION_HEIGHT / UI_GRID_ROWS))
+  return uiBoxWidth * UI_BOX_WIDTH,
+         uiBoxHeight * UI_BOX_HEIGHT
 end
 
 return Screen
