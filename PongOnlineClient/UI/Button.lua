@@ -34,12 +34,14 @@ end
 
 function Button:draw(x, y)
   local textWidth = love.graphics.getFont():getWidth(self._label)
-  if self._isHovered then love.graphics.setColor(1, 1, 1, 1) else love.graphics.setColor(1, 1, 1, 0.3) end
-  love.graphics.rectangle("line", x, y, self._width, self._height)
   love.graphics.setColor(1, 1, 1, 1)
+  local recMode = self._isHovered and "fill" or "line"
+  love.graphics.rectangle(recMode, x, y, self._width, self._height)
+  if self._isHovered then love.graphics.setColor(23 / 255, 19 / 255, 55 / 255, 1) else love.graphics.setColor(1, 1, 1, 1) end
   love.graphics.print(self._label,
                       x + self._width / 2 - math.floor(textWidth / 2),
                       y + self._height / 2 - math.floor(love.graphics.getFont():getHeight() / 2))
+  love.graphics.setColor(1, 1, 1, 1)
 end
 
 return Button
