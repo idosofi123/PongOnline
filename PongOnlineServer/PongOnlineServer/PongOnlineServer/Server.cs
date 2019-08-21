@@ -34,7 +34,7 @@ namespace PongOnlineServer {
             }
         }
 
-        private async void HandleNewConnection() {
+        private void HandleNewConnection() {
             TcpClient newClient = this._listener.AcceptTcpClient();
             this._connectedClients.Add(newClient);
         }
