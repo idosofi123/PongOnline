@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PongOnlineServer
 {
-    class Player : GameObject
-    {
+    class Player : GameObject {
+
     }
 }

@@ -27,16 +27,21 @@ namespace PongOnlineServer {
         private void Start() {
             this._isRunning = true;
             this._listener.Start();
+            Console.WriteLine(String.Format("[ {0} ] - Server is running!", System.DateTime.UtcNow));
+            Console.WriteLine(String.Format("[ {0} ] - Waiting for coming connections...", System.DateTime.UtcNow));
             while (this._isRunning) {
                 if (this._listener.Pending()) {
-                    this.HandleNewConnection();
+                    Task newConnTask = this.HandleNewConnection();
                 }
             }
         }
 
-        private void HandleNewConnection() {
-            TcpClient newClient = this._listener.AcceptTcpClient();
-            this._connectedClients.Add(newClient);
+        private Task HandleNewConnection() {
+            return Task.Run(() => {
+                TcpClient newClient = this._listener.AcceptTcpClient();
+                this._connectedClients.Add(newClient);
+                Console.WriteLine(String.Format("[ {0} ] - New connection from: " + newClient.Client.RemoteEndPoint.ToString(), System.DateTime.UtcNow));
+            });
         }
 
         static private Server instance;

@@ -10,7 +10,7 @@ super.__index = super
 setmetatable(MenuScreen, super)
 
 -- UI Definition
-super:addElement(Button:new("Connect", function()  end, 4, 1), 6, 7)
+super:addElement(Button:new("Connect", function() love.event.push('connectToServer') end, 4, 1), 6, 7)
 super:addElement(Button:new("Exit", function() love.event.quit() end, 4, 1), 6, 9)
 
 

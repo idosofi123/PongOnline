@@ -4,6 +4,7 @@
 Roomy           = require 'Libraries/roomy'
 Keyboard        = require 'Utilities/Keyboard'
 TextureSupplier = require 'Utilities/TextureSupplier'
+Client          = require 'Networking/Client'
 
 -- Screens
 MenuScreen   = require 'Screening/Screens/Menu'
@@ -28,6 +29,11 @@ function love.load()
   screenManager:hook()
   screenManager:switch(MenuScreen)
 
+end
+
+-- Define connection to server
+function love.handlers.connectToServer()
+  Client:connectToServer()
 end
 
 function love.update(dt)
