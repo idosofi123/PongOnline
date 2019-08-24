@@ -22,6 +22,7 @@ namespace PongOnlineServer {
 
         private Server() {
             this._connectedClients = new Dictionary<EndPoint, TcpClient>();
+            this._matchmakingQueue = new Queue<EndPoint>();
             this._liveMatches = new List<Match>();
             this._listener = new TcpListener(IPAddress.Any, PORT);
         }
