@@ -4,9 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PongOnlineServer
-{
-    class Packet
-    {
+namespace PongOnlineServer {
+
+    public enum Command { EnterGame, Move, Disconnect };
+
+    class Packet {
+        private Command _command;
+
+        public Command Command {
+            get { return this._command; }
+        }
+
+        public Packet(byte[] streamData) {
+
+        }
     }
 }

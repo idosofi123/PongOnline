@@ -9,6 +9,8 @@ namespace PongOnlineServer
 {
     class Match {
 
+        public const int NUMBER_OF_PLAYERS = 2;
+
         private Thread _gameThread;
 
         public Match() {
