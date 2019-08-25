@@ -21,4 +21,9 @@ function MenuScreen:draw()
   getmetatable(self):draw()
 end
 
+function love.handlers.connectionSuccessful()
+  super:clearScreen()
+  super:addElement(Button:new("Play", function() love.event.push('startGame') end, 4, 1), 6, 7)
+end
+
 return MenuScreen

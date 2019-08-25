@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PongOnlineServer {
 
-    public enum Command { EnterGame, Move, Disconnect };
+    public enum Command { EnterGame, Disconnect, Move };
 
     class Packet {
         private Command _command;

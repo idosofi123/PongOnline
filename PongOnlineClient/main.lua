@@ -33,7 +33,11 @@ end
 
 -- Define connection to server
 function love.handlers.connectToServer()
-  Client:connectToServer()
+  if Client:connectToServer() == nil then
+    love.event.push("connectionSuccessful")
+  else
+    -- TODO: Handle error
+  end
 end
 
 function love.update(dt)

@@ -17,7 +17,7 @@ function Screen:new()
   return instance
 end
 
-function  Screen:addElement(element, uiBoxCol, uiBoxRow)
+function Screen:addElement(element, uiBoxCol, uiBoxRow)
   local uiBoxWidth, uiBoxHeight = element:getUiDimensions()
 
 -- Fill the grid with references to the UI element to enable spatial hashing
@@ -28,6 +28,11 @@ function  Screen:addElement(element, uiBoxCol, uiBoxRow)
   end
 
   self._drawUi[uiBoxCol + uiBoxRow * UI_GRID_COLUMNS] = element
+end
+
+function Screen:clearScreen()
+  self._ui = {}
+  self._drawUi = {}
 end
 
 function Screen:mousepressed(x, y, button, isTouch)

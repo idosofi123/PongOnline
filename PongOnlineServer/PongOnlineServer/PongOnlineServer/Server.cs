@@ -86,10 +86,11 @@ namespace PongOnlineServer {
                             EndPoint endPoint = this._matchmakingQueue.Dequeue();
                             clientsOfNewGame.Add(this._connectedClients[endPoint]);
                         }
+
                         // TODO: Make a new match out of these clients.
+
                         PrintTimestampMessage("A game started!");
                     }
-                    
                     Thread.Sleep(SERVER_LOOP_DELAY);
                 }
             });
@@ -106,7 +107,7 @@ namespace PongOnlineServer {
             ENet.Library.Initialize();
             instance = new Server();
 
-            // Handle the CTRL+C event
+            // Handle the CTRL+C event - deinitialize the server and end the process.
             Console.CancelKeyPress += delegate {
                 instance.DeinitializeServer();
             };
