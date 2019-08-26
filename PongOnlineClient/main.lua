@@ -1,14 +1,14 @@
 -- main.lua
 
 -- libraries and Utilities
-Roomy           = require 'Libraries/roomy'
-Keyboard        = require 'Utilities/Keyboard'
-TextureSupplier = require 'Utilities/TextureSupplier'
-Client          = require 'Networking/Client'
+Roomy           = require 'Libraries.roomy'
+Keyboard        = require 'Utilities.Keyboard'
+TextureSupplier = require 'Utilities.TextureSupplier'
+Client          = require 'Networking.Client'
 
 -- Screens
-MenuScreen   = require 'Screening/Screens/Menu'
-InGameScreen = require 'Screening/Screens/InGame'
+MenuScreen   = require 'Screening.Screens.Menu'
+InGameScreen = require 'Screening.Screens.InGame'
 
 -- Main Game Members
 local screenManager
@@ -38,6 +38,10 @@ function love.handlers.connectToServer()
   else
     -- TODO: Handle error
   end
+end
+
+function love.handlers.startGame()
+  Client:startMatchmaking()
 end
 
 function love.update(dt)

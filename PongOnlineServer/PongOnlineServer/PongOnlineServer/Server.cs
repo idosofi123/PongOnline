@@ -65,15 +65,19 @@ namespace PongOnlineServer {
                 Packet receivedPacket = new Packet(receivedData);
                 switch (receivedPacket.Command) {
                     case Command.EnterGame:
-                        this._matchmakingQueue.Enqueue(client.Client.RemoteEndPoint);
-                        break;
-                    case Command.Move:
+                        this.addToMatchMaking(client);
                         break;
                     case Command.Disconnect:
                         break;
                     default:
                         break;
                 }
+            }
+        }
+
+        private void addToMatchMaking(TcpClient client) {
+            if (!this._matchmakingQueue.Contains(client.Client.RemoteEndPoint)) {
+                this._matchmakingQueue.Enqueue(client.Client.RemoteEndPoint);
             }
         }
 

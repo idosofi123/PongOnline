@@ -5,9 +5,9 @@ Packet.__index = Packet
 
 -- Static definitions
 Packet.Commands = {
-  enterGame = 0x1,
-  disconnect = 0x2,
-  move = 0x3
+  enterGame = 0x0,
+  disconnect = 0x1,
+  move = 0x2
 }
 
 Packet.Props = {
@@ -19,7 +19,7 @@ Packet.Props = {
 function Packet.generatePacket(command, props)
   props = props or Packet.Props.null
   local packetData = 0x00
-  packetData = ((packetData | command) * (2 ^ 4)) | props
+  packetData = ((command * 2^4) + props)
   return packetData
 end
 
