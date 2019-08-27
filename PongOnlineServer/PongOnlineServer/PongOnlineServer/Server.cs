@@ -86,12 +86,15 @@ namespace PongOnlineServer {
                 while (this._isRunning) {
                     if (this._matchmakingQueue.Count >=  Match.NUMBER_OF_PLAYERS) {
                         List<TcpClient> clientsOfNewGame = new List<TcpClient>();
+                        byte[] packetData = { Packet.GeneratePacketByteData(new Packet(Command.EnterGame, Props.Success)) };
                         for (int i = 0; i < Match.NUMBER_OF_PLAYERS; i++) {
                             EndPoint endPoint = this._matchmakingQueue.Dequeue();
+                            NetworkStream streamOfClient = this._connectedClients[endPoint].GetStream();
+                            streamOfClient.Write(packetData, 0, 1);
                             clientsOfNewGame.Add(this._connectedClients[endPoint]);
                         }
 
-                        // TODO: Make a new match out of these clients.
+                        // TODO: Make a new eNet match out of these clients.
 
                         PrintTimestampMessage("A game started!");
                     }

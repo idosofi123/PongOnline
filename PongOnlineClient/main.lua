@@ -44,6 +44,10 @@ function love.handlers.startGame()
   Client:startMatchmaking()
 end
 
+function love.handlers.foundGame()
+  screenManager:switch(InGameScreen)
+end
+
 function love.update(dt)
   -- body --
 end
