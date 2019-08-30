@@ -23,6 +23,7 @@ namespace PongOnlineServer {
 
         private Server() {
             this._connectedClients = new Dictionary<EndPoint, TcpClient>();
+            this._newClients = new List<TcpClient>();
             this._matchmakingQueue = new Queue<EndPoint>();
             this._liveMatches = new List<Match>();
             this._listener = new TcpListener(IPAddress.Any, PORT);
@@ -31,36 +32,44 @@ namespace PongOnlineServer {
         private void Start() {
             this._isRunning = true;
             this._listener.Start();
-            List<Task> clientHandlingTasks = new List<Task>();
             PrintTimestampMessage("Server is running!");
             PrintTimestampMessage("Waiting for coming connections...");
-            this.MatchMaking();
-
-            while (this._isRunning) {
-                if (this._listener.Pending()) {
-                    Task newConnTask = this.HandleNewConnection();
-                }
-
-                // Handle ongoing connections
-                this.IncludeNewClients();
-                foreach (TcpClient client in this._connectedClients.Values) {
-                    clientHandlingTasks.Add(this.ReceiveAndHandlePacket(client));
-                }
-
-                // Prevent CPU killing
-                Thread.Sleep(SERVER_LOOP_DELAY);
-            }
+            List<Task> tasks = new List<Task>();
+            tasks.Add(this.HandleNewConnections());
+            tasks.Add(this.MatchMaking());
+            tasks.Add(this.HandleOngoingConnections());
+            Task.WaitAll(tasks.ToArray());
         }
 
-        private Task HandleNewConnection() {
+        private Task HandleOngoingConnections() {
             return Task.Run(() => {
-                TcpClient newClient = this._listener.AcceptTcpClient();
-                this._newClients.Add(newClient);
-                PrintTimestampMessage("New connection from: " + newClient.Client.RemoteEndPoint.ToString());
+                while (this._isRunning) {
+                    this.IncludeNewClients();
+                    if (this._connectedClients.Count > 0) {
+                        foreach (TcpClient client in this._connectedClients.Values) {
+                            this.ReceiveAndHandlePacket(client);
+                        }
+                    }
+                    Thread.Sleep(SERVER_LOOP_DELAY);
+                }
+            });
+        }
+
+        private Task HandleNewConnections() {
+            return Task.Run(() => {
+                while (this._isRunning) {
+                    TcpClient newClient = this._listener.AcceptTcpClient();
+                    this._newClients.Add(newClient);
+                    PrintTimestampMessage("New connection from: " + newClient.Client.RemoteEndPoint.ToString());
+                    Thread.Sleep(SERVER_LOOP_DELAY);
+                }
             });
         }
 
         private void IncludeNewClients() {
+            if (this._newClients.Count == 0) {
+                return;
+            }
             foreach (TcpClient client in this._newClients) {
                 this._connectedClients.Add(client.Client.RemoteEndPoint, client);
             }
@@ -88,6 +97,7 @@ namespace PongOnlineServer {
         private void addToMatchMaking(TcpClient client) {
             if (!this._matchmakingQueue.Contains(client.Client.RemoteEndPoint)) {
                 this._matchmakingQueue.Enqueue(client.Client.RemoteEndPoint);
+                PrintTimestampMessage(client.Client.RemoteEndPoint.ToString() + " has entered matchmaking.");
             }
         }
 
