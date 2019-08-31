@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PongOnlineServer
-{
-    class GameObject {
+namespace PongOnlineServer.Physics {
+    abstract class Shape {
 
+        public abstract void Collides();
     }
 }
