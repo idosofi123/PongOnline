@@ -7,6 +7,7 @@ using System.Numerics;
 
 namespace PongOnlineServer.Physics {
     class Body {
+
         private Vector2 _position;
         public Vector2 Position { get => this._position; }
 
@@ -21,7 +22,7 @@ namespace PongOnlineServer.Physics {
         }
 
         public bool Collides(Body otherBody) {
-            return 
+            return this._shape.Collides(otherBody.Shape, this._position, otherBody.Position);
         }
     }
 }

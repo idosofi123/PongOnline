@@ -20,20 +20,20 @@ Packet.CommandsKeySet = {
 
 Packet.Props = {
   null = 0x0,
-  up = 0x1,
-  down = 0x2,
-  success = 0x3,
-  error = 0x4
+  success = 0x1,
+  error = 0x2,
+  up = 0x3,
+  down = 0x4
 }
 
 -- TODO: Generate the key-sets by code
 
 Packet.PropsKeySet = {
   "null",
-  "up",
-  "down",
   "success",
-  "error"
+  "error",
+  "up",
+  "down"
 }
 
 function Packet.generatePacket(command, props)

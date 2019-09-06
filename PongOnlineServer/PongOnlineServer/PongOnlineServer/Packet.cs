@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace PongOnlineServer {
 
     public enum Command { EnterGame, Disconnect, Move };
-    public enum Props { Null, Up, Down, Success, Error };
+    public enum Props { Null, Success, Error, Up, Down };
 
     class Packet {
 

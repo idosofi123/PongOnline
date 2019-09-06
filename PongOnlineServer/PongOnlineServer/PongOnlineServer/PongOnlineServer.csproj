@@ -68,6 +68,8 @@
     <Compile Include="Ball.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="GameStatePacket.cs" />
+    <Compile Include="INetworkable.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="Packet.cs" />
     <Compile Include="Physics\Body.cs" />

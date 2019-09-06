@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PongOnlineServer
-{
-    class Player : GameObject {
+namespace PongOnlineServer {
+    class GameStatePacket {
+
     }
 }
